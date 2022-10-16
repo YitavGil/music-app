@@ -17,7 +17,7 @@ const TopChartCard = ({ song, index, isPlaying, activeSong, handlePauseClick, ha
     <div className="flex-1 flex flex-row justify-between items-center">
       <img src={song?.images?.coverart} alt={song?.title} className="w-20 h-20 rounded-lg" />
       <div className="flex-1 flex flex-col justify-center mx-3">
-        <Link to={`/song/${song.key}`}>
+        <Link to={`/songs/${song.key}`}>
           <p className="text-xl font-bold text-white">{song?.title}</p>
         </Link>
         <Link to={`/artists/${song.artists[0].adamid}`}>
@@ -42,7 +42,7 @@ const TopPlay = () => {
   const divRef = useRef(null);
 
   useEffect(() => {
-    divRef.current.scrollIntoView({ behavior: 'smooth'})
+    divRef.current.scrollIntoView({ behavior: 'smooth' });
   });
 
   const topPlays = data?.slice(0, 5);
@@ -51,7 +51,7 @@ const TopPlay = () => {
     dispatch(playPause(false));
   };
 
-  const handlePlayClick = () => {
+  const handlePlayClick = (song, index) => {
     dispatch(setActiveSong({ song, data, index }));
     dispatch(playPause(true));
   };
@@ -75,7 +75,7 @@ const TopPlay = () => {
               isPlaying={isPlaying}
               activeSong={activeSong}
               handlePauseClick={handlePauseClick}
-              handlePlayClick={handlePlayClick}
+              handlePlayClick={() => handlePlayClick(song, index)}
             />
           ))}
         </div>
