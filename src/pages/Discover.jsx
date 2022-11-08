@@ -7,7 +7,8 @@ import { useGetSongsByGenreQuery } from '../redux/services/shazamCore';
 
 const Discover = () => {
   const dispatch = useDispatch();
-  const { activeSong, isPlaying, genreListId } = useSelector((state) => state.player);
+  const { genreListId } = useSelector((state) => state.player);
+  const { activeSong, isPlaying } = useSelector((state) => state.player);
 
   const { data, isFetching, error } = useGetSongsByGenreQuery(genreListId || 'ROCK');
 
@@ -15,7 +16,8 @@ const Discover = () => {
 
   if (error) return <Error />;
 
-  const genreTitle = genres.find(({ value }) => value === genreListId);
+  const genreTitle = genres.find(({ value }) => value === genreListId)?.title;
+  console.log(genreListId);
 
   return (
     <div className="flex flex-col">
