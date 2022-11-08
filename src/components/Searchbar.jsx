@@ -13,7 +13,12 @@ const Searchbar = () => (
         name="search-field"
         autoComplete="off"
         id="search-field"
-        />
+        placeholder="search"
+        type="search"
+        value=""
+        onChange={() => {}}
+        className="flex-1 bg-transparent border-none outline-none placeholder-gray-500 text-base text-white p-4"
+      />
     </div>
   </form>
 );
